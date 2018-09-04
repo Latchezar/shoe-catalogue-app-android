@@ -1,0 +1,50 @@
+﻿sizes: 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46
+colors: red, blue, green, yellow, black, gray, white, brown, pink, purple
+
+class Product
+	int id
+	string name
+	string model
+	enum color
+	list<enum Size> availableSizes
+	string description
+	string imagePath
+
+
+
+123.123.123.123:8080/image1.jpg
+
+getAll(){
+	returns all products in json;
+}
+
+getColors(){
+	returns json with array of colors;
+}
+
+getSizes(){
+	returns json with array of sizes;
+}
+
+
+get(int id){
+	return product by id;
+}
+
+(update)
+put(){
+	receive json with product;
+	create object from json
+	update in the map by key(id);
+}
+
+delete(id){
+	delete object by id in the map;
+}
+
+(add)
+post(){
+	receive json with product;
+	create object from json;
+	put the object in the map;
+}
