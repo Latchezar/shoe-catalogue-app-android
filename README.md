@@ -1,0 +1,1 @@
+# shoe-catalogue-app-android
