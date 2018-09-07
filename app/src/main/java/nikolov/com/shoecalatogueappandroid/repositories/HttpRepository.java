@@ -5,7 +5,7 @@ import java.util.List;
 import nikolov.com.shoecalatogueappandroid.repositories.base.Repository;
 
 public class HttpRepository<T> implements Repository<T>{
-    private final Http
+    private final H
 
     @Override
     public List<T> getAll() {
