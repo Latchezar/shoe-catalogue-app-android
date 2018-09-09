@@ -1,11 +1,12 @@
 package nikolov.com.shoecalatogueappandroid.repositories.base;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Repository<T> {
-    List<T> getAll();
+    Map<Integer, T> getAll();
 
-    T add(T item);
+    T add(int id, T item);
 
     T getById(int id);
 }
