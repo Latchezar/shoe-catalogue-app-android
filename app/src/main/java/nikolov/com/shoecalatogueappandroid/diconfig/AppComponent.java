@@ -1,10 +1,11 @@
 package nikolov.com.shoecalatogueappandroid.diconfig;
 
-import android.app.Application;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
+import nikolov.com.shoecalatogueappandroid.AndroidApplication;
+
 import javax.inject.Singleton;
 
 
@@ -13,13 +14,13 @@ import javax.inject.Singleton;
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
-public interface AppComponent extends AndroidInjector<Application> {
+public interface AppComponent extends AndroidInjector<AndroidApplication> {
 
     @Component.Builder
     interface Builder {
 
         @BindsInstance
-        AppComponent.Builder application(Application application);
+        AppComponent.Builder application(AndroidApplication application);
 
         AppComponent build();
     }
