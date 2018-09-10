@@ -1,5 +1,6 @@
-package nikolov.com.shoecalatogueappandroid;
+package nikolov.com.shoecalatogueappandroid.views;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,10 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import nikolov.com.shoecalatogueappandroid.R;
+import nikolov.com.shoecalatogueappandroid.models.Product;
+
+public class MainActivity extends AppCompatActivity implements ProductsListContract.Navigator{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -60,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), AddProductActivity.class);
+                startActivity(intent);
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -88,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void navigateWith(Product product) {
+//        Intent intent = new Intent(this, ProductDetailsActivity.class);
+//        intent.putExtra(ProductDetailsActivity.EXTRA_KEY, product);
+//        startActivity(intent);
     }
 
     /**

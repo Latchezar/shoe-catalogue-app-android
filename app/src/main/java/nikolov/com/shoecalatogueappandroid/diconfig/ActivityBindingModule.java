@@ -2,7 +2,7 @@ package nikolov.com.shoecalatogueappandroid.diconfig;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import nikolov.com.shoecalatogueappandroid.MainActivity;
+import nikolov.com.shoecalatogueappandroid.views.MainActivity;
 
 /**
  * We want Dagger.Android to create a Subcomponent which has a parent Component of whichever module ActivityBindingModule is on,

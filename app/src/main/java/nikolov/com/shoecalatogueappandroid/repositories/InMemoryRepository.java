@@ -1,6 +1,7 @@
 package nikolov.com.shoecalatogueappandroid.repositories;
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,25 @@ public class InMemoryRepository<T> implements Repository<T> {
     @Override
     public T getById(int id) {
         return mItems.get(id);
+    }
+
+    @Override
+    public List<String> getColors() throws IOException {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getSizes() throws IOException {
+        return null;
+    }
+
+    @Override
+    public String delete(int id) throws IOException {
+        return null;
+    }
+
+    @Override
+    public String update(int id, T object) throws IOException {
+        return null;
     }
 }
