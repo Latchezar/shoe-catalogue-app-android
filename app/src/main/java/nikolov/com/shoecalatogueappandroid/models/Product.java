@@ -8,4 +8,8 @@ public class Product {
     private int price;
     private List<Colors> Colors;
     private List<Integer> Sizes;
+
+    public int getId() {
+        return id;
+    }
 }

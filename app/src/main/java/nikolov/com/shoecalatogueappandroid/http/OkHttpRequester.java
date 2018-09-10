@@ -10,30 +10,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class OkHttpRequester implements HttpRequester{
-    private final String BASE_URL;
-    public OkHttpRequester(){
-        BASE_URL = Constants.SERVER_URL_BASE;
-    }
-
-    @Override
-    public String get(String url) throws IOException {
-        Request request = new Request.Builder()
-                .get()
-                .url(url)
-                .build();
-        OkHttpClient client = new OkHttpClient();
-
-        Response respone = client.newCall(request)
-                .execute();
-
-        String body = respone.body().string();
-        return body;
-    }
-
-    @Override
-    public String post(String url, String body) throws IOException {
-
-    }
 
     private String getRequest(String url) throws IOException {
         Request request = new Request.Builder()
@@ -51,41 +27,53 @@ public class OkHttpRequester implements HttpRequester{
 
 
     @Override
-    public String getProducts() throws IOException {
-        String url = BASE_URL + "/api/products";
-        // returns a json hashmap
+    public String getProducts(String url) throws IOException {
+        // returns a json map
         return getRequest(url);
     }
 
     @Override
-    public String getProductColors() throws IOException {
+    public String getProductColors(String url) throws IOException {
         //returns a list of color strings
-        String url = BASE_URL + "api/products/colors";
+        url += "/colors";
         return getRequest(url);
     }
 
     @Override
-    public String getSizes() throws IOException {
+    public String getSizes(String url) throws IOException {
         //returns a list of integers with sizes
-        String url = BASE_URL + "api/products/sizes";
+        url += "/sizes";
         return getRequest(url);
     }
 
     @Override
-    public String createProduct(String body) throws IOException {
+    public String createProduct(String url, String body) throws IOException {
+        url += "/create";
+        RequestBody requestBody = RequestBody.create(
+                MediaType.parse("application/json"),
+                body
+        );
+        Request request = new Request.Builder()
+                .put(requestBody)
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
 
-        return null;
+        Response response = client.newCall(request)
+                .execute();
+        String responseBody = response.body().string();
+        return responseBody;
     }
 
     @Override
-    public String getProductById(int id) throws IOException {
-        String url = BASE_URL + "api/products/" + id;
+    public String getProductById(String url, int id) throws IOException {
+        url+= Integer.toString(id);
         return getRequest(url);
     }
 
     @Override
-    public String updateProduct(int id, String body) throws IOException {
-        String url = BASE_URL + "/api/products/create";
+    public String updateProduct(String url, int id, String body) throws IOException {
+        url += Integer.toString(id);
         RequestBody requestBody = RequestBody.create(
                 MediaType.parse("application/json"),
                 body
@@ -104,8 +92,8 @@ public class OkHttpRequester implements HttpRequester{
     }
 
     @Override
-    public String deleteProduct(int id) throws IOException {
-        String url = BASE_URL + "/api/products/" + id;
+    public String deleteProduct(String url, int id) throws IOException {
+        url+= Integer.toString(id);
         Request request = new Request.Builder()
                 .delete()
                 .url(url)
