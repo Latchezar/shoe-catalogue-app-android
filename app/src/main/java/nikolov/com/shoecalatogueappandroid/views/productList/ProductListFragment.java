@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import nikolov.com.shoecalatogueappandroid.Constants;
 import nikolov.com.shoecalatogueappandroid.R;
 import nikolov.com.shoecalatogueappandroid.http.HttpRequester;
@@ -32,12 +35,18 @@ import nikolov.com.shoecalatogueappandroid.services.base.ProductService;
  */
 public class ProductListFragment extends Fragment implements ProductsListContract.View, AdapterView.OnItemClickListener{
     private ProductsListContract.Navigator mNavigator;
-    private ListView mProductListView;
-    private ArrayAdapter mProductListAdapter;
-    private Repository mHttpRepository;
-    private HttpRequester mHttpRequester;
-    private JsonParser mJsonParser;
-    private ProductService mProductService;
+
+    @BindView(R.id.product_list)
+    ListView mProductListView;
+
+    @BindView(R.id.loading)
+    ProgressBar mLoadingView;
+
+    @BindView(R.id.filter)
+    EditText mFilterEditText;
+    
+    @Inject
+    ArrayAdapter<Product> mProductListAdapter;
 
     @Inject
     public ProductListFragment() {
@@ -53,18 +62,8 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
         mProductListView = view.findViewById(R.id.product_list);
         mProductListAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1);
 
-
         mProductListView.setAdapter(mProductListAdapter);
         mProductListView.setOnItemClickListener(this);
-        mHttpRequester = new OkHttpRequester();
-        mJsonParser = new GsonJsonParser(Product.class, Product[].class);
-
-        mHttpRepository = new HttpRepository(Constants.SERVER_URL_BASE, mHttpRequester, mJsonParser);
-        mProductService = new HttpProductService(mHttpRepository);
-
-
-
-
 
         return view;
     }
