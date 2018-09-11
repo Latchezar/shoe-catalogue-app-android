@@ -1,5 +1,6 @@
 package nikolov.com.shoecalatogueappandroid.views.productList;
 
+import java.util.List;
 import java.util.Map;
 
 import nikolov.com.shoecalatogueappandroid.models.Product;
@@ -8,7 +9,7 @@ public interface ProductsListContract {
     interface View{
         void setPresenter(Presenter presenter);
 
-        void showProducts(Map<Integer, Product> products);
+        void showProducts(List<Product> products);
 
         void showEmptyProductsList();
 
@@ -25,8 +26,6 @@ public interface ProductsListContract {
         void subscribe(View view);
 
         void loadProducts();
-
-        void filterProducts(String pattern);
 
         void selectProduct(Product product);
     }

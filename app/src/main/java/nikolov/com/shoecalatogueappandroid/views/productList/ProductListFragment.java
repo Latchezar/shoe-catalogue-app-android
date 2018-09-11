@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -83,7 +84,7 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
     }
 
     @Override
-    public void showProducts(Map<Integer, Product> products) {
+    public void showProducts(List<Product> products) {
 
     }
 
