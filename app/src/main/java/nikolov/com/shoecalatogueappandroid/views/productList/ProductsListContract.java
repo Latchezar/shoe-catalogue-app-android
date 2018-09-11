@@ -1,4 +1,4 @@
-package nikolov.com.shoecalatogueappandroid.views;
+package nikolov.com.shoecalatogueappandroid.views.productList;
 
 import java.util.Map;
 

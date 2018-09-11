@@ -1,8 +1,8 @@
-package nikolov.com.shoecalatogueappandroid.views;
+package nikolov.com.shoecalatogueappandroid.views.productList;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.IOException;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import nikolov.com.shoecalatogueappandroid.Constants;
 import nikolov.com.shoecalatogueappandroid.R;
@@ -28,7 +29,8 @@ import nikolov.com.shoecalatogueappandroid.services.base.ProductService;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductListFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class ProductListFragment extends Fragment implements ProductsListContract.View, AdapterView.OnItemClickListener{
+    private ProductsListContract.Navigator mNavigator;
     private ListView mProductListView;
     private ArrayAdapter mProductListAdapter;
     private Repository mHttpRepository;
@@ -36,6 +38,7 @@ public class ProductListFragment extends Fragment implements AdapterView.OnItemC
     private JsonParser mJsonParser;
     private ProductService mProductService;
 
+    @Inject
     public ProductListFragment() {
         // Required empty public constructor
     }
@@ -72,5 +75,44 @@ public class ProductListFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+    }
+
+    @Override
+    public void setPresenter(ProductsListContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void showProducts(Map<Integer, Product> products) {
+
+    }
+
+    @Override
+    public void showEmptyProductsList() {
+
+    }
+
+    @Override
+    public void showError(Throwable e) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showProductDetails(Product product) {
+
+    }
+
+    void setNavigator(ProductsListContract.Navigator navigator){
+        mNavigator = navigator;
     }
 }
