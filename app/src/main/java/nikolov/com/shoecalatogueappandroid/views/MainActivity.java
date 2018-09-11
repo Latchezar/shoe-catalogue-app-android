@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -150,9 +151,21 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
 
         @Override
         public Fragment getItem(int position) {
+
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position){
+                case 1:
+                    return ProductListFragment.newInstance();
+                case 2:
+                    return null;
+                case 3:
+                    return null;
+                default:
+                    return null;
+            }
+
+            //return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override

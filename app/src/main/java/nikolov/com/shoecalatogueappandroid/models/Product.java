@@ -3,11 +3,11 @@ package nikolov.com.shoecalatogueappandroid.models;
 import java.util.List;
 
 public class Product {
-    private int id;
-    private String name, model, description, imagePath;
-    private int price;
-    private List<Colors> Colors;
-    private List<Integer> Sizes;
+    public int id;
+    public String name, model, description, imagePath;
+    public int price;
+    public List<Colors> Colors;
+    public List<Integer> Sizes;
 
     public int getId() {
         return id;
