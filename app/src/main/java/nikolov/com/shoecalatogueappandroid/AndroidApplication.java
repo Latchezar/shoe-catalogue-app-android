@@ -5,7 +5,6 @@ import java.util.Map;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import nikolov.com.shoecalatogueappandroid.diconfig.DaggerAppComponent;
 import nikolov.com.shoecalatogueappandroid.http.HttpRequester;
 import nikolov.com.shoecalatogueappandroid.http.OkHttpRequester;
 import nikolov.com.shoecalatogueappandroid.models.Product;
@@ -17,9 +16,9 @@ import nikolov.com.shoecalatogueappandroid.repositories.base.Repository;
 
 public class AndroidApplication extends DaggerApplication {
 
-    public static Repository<Product> superheroRepository;
+    public static Repository<Product> productRepository;
     private static HttpRequester httpRequester;
-    private static JsonParser<Product> superheroJsonParser;
+    private static JsonParser<Product> productJsonParser;
     private static Map<String, Repository> repositoriesMap;
     private static Map<String, JsonParser> jsonParsersMap;
 
@@ -30,7 +29,8 @@ public class AndroidApplication extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.builder().application(this).build();
+        //return DaggerAppComponent.builder().application(this).build();
+        return null;
     }
 
     public static <T> Repository<T> getRepository(Class<T> klass, Class<T[]> arrayKlass) {
@@ -69,17 +69,16 @@ public class AndroidApplication extends DaggerApplication {
     }
 
     public static String getServerBaseUrl() {
-        return "http://192.168.160.143:8080/api";
+        return Constants.SERVER_URL_BASE;
     }
 
-    public static JsonParser<Product> getSuperheroJsonParser() {
-        if (superheroJsonParser == null) {
-            superheroJsonParser = new GsonJsonParser<>(
+    public static JsonParser<Product> getProductJsonParser() {
+        if (productJsonParser == null) {
+            productJsonParser = new GsonJsonParser<>(
                     Product.class,
                     Product[].class
             );
         }
-        return superheroJsonParser;
+        return productJsonParser;
     }
-
 }

@@ -11,6 +11,12 @@ import javax.inject.Singleton;
 
 @Singleton
 @Component(modules = {
+        ServiceModule.class,
+        RepositoriesModule.class,
+        ParserModule.class,
+        HttpModule.class,
+        AsyncModule.class,
+        ProductListModule.class,
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
