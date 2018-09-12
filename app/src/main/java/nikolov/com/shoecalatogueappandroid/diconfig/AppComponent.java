@@ -16,7 +16,6 @@ import javax.inject.Singleton;
         ParserModule.class,
         HttpModule.class,
         AsyncModule.class,
-        ProductListModule.class,
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
