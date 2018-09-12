@@ -44,7 +44,7 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
 
     @BindView(R.id.filter)
     EditText mFilterEditText;
-    
+
     @Inject
     ArrayAdapter<Product> mProductListAdapter;
 
