@@ -17,4 +17,9 @@ public interface HttpRequester {
     String updateProduct(String url, int id, String body) throws IOException;
 
     String deleteProduct(String url, int id) throws IOException;
+
+    String get(String url) throws IOException;
+
+    String post(String url, String body) throws IOException;
+
 }

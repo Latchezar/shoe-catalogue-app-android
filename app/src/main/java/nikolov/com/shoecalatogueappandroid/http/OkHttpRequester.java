@@ -105,4 +105,39 @@ public class OkHttpRequester implements HttpRequester{
         String responseBody = response.body().string();
         return responseBody;
     }
+
+    @Override
+    public String get(String url) throws IOException {
+        Request request = new Request.Builder()
+                .get()
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request)
+                .execute();
+
+        String body = response.body().string();
+        return body;
+    }
+
+    @Override
+    public String post(String url, String bodyString) throws IOException {
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/json"),
+                bodyString
+        );
+
+        Request request = new Request.Builder()
+                .post(body)
+                .url(url)
+                .build();
+        OkHttpClient client = new OkHttpClient();
+
+        Response response = client.newCall(request)
+                .execute();
+
+        String responseBody = response.body().string();
+        return responseBody;
+    }
 }
