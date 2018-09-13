@@ -30,6 +30,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
                 parent,
                 false
         );
+        
 
     }
 }
