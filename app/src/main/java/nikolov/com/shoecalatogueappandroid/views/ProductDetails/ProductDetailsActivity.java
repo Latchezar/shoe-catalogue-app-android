@@ -8,6 +8,7 @@ import nikolov.com.shoecalatogueappandroid.AndroidApplication;
 import nikolov.com.shoecalatogueappandroid.R;
 import nikolov.com.shoecalatogueappandroid.models.Product;
 import nikolov.com.shoecalatogueappandroid.repositories.base.Repository;
+import nikolov.com.shoecalatogueappandroid.services.base.ProductService;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_KEY = "PRODUCT_EXTRA_KEY";
@@ -19,9 +20,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Repository<Product> repository = AndroidApplication.getRepository(Product.class, Product[].class);
+        //Repository<Product> repository = AndroidApplication.getRepository(Product.class, Product[].class);
+        //mProductDetailsPresenter = new ProductDetailsPresenter(repository);
 
-        mProductDetailsPresenter = new ProductDetailsPresenter(repository);
+        ProductService productsService = null;
 
         Intent intent = getIntent();
         Product product = (Product) intent.getSerializableExtra(ProductDetailsActivity.EXTRA_KEY);
