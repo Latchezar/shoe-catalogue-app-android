@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -30,7 +31,15 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
                 parent,
                 false
         );
-        
 
+        TextView nameTextView = view.findViewById(R.id.tv_name);
+        TextView priceTextView = view.findViewById(R.id.tv_price);
+
+        Product product = getItem(position);
+
+        nameTextView.setText(product.getName());
+        priceTextView.setText(product.getPrice());
+
+        return view;
     }
 }
