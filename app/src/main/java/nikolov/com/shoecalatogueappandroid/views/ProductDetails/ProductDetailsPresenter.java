@@ -5,15 +5,19 @@ import java.io.IOException;
 import nikolov.com.shoecalatogueappandroid.async.AsyncRunner;
 import nikolov.com.shoecalatogueappandroid.models.Product;
 import nikolov.com.shoecalatogueappandroid.repositories.base.Repository;
+import nikolov.com.shoecalatogueappandroid.services.base.ProductService;
 
 public class ProductDetailsPresenter implements ProductDetailsContracts.Presenter {
 
-    private final Repository<Product> mProductsRepository;
+    private final ProductService mProductsService;
+    private final AsyncRunner mAsyncRunner;
     private ProductDetailsContracts.View mView;
     private int mProductId;
 
-    public ProductDetailsPresenter(Repository<Product> productRepository) {
-        mProductsRepository = productRepository;
+
+    public ProductDetailsPresenter(ProductService productsService, AsyncRunner asyncRunner) {
+        mProductsService = productsService;
+        mAsyncRunner = asyncRunner;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class ProductDetailsPresenter implements ProductDetailsContracts.Presente
         //mView.showLoading();
         AsyncRunner.runInBackground(() -> {
             try {
-                Product product = mProductsRepository.getById(mProductId);
+                Product product = mProductsService.getProductById(mProductId);
                 mView.showProduct(product);
             } catch (IOException e) {
                 e.printStackTrace();
