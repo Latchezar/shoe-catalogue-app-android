@@ -14,6 +14,8 @@ import nikolov.com.shoecalatogueappandroid.views.productList.MainActivity;
 @Module
 public abstract class ActivityBindingModule {
     @ActivityScoped
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(
+            modules = ProductListModule.class
+    )
     abstract MainActivity mainActivity();
 }

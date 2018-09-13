@@ -18,6 +18,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import nikolov.com.shoecalatogueappandroid.Constants;
 import nikolov.com.shoecalatogueappandroid.R;
 import nikolov.com.shoecalatogueappandroid.http.HttpRequester;
@@ -46,7 +47,7 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
     EditText mFilterEditText;
 
     @Inject
-    ArrayAdapter<Product> mProductListAdapter;
+    ProductListAdapter mProductListAdapter;
 
     @Inject
     public ProductListFragment() {
@@ -59,11 +60,10 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
-        mProductListView = view.findViewById(R.id.product_list);
-        mProductListAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1);
+
+        ButterKnife.bind(this, view);
 
         mProductListView.setAdapter(mProductListAdapter);
-        mProductListView.setOnItemClickListener(this);
 
         return view;
     }

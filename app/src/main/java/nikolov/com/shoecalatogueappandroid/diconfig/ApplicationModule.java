@@ -5,6 +5,7 @@ import android.content.Context;
 
 import dagger.Binds;
 import dagger.Module;
+import nikolov.com.shoecalatogueappandroid.AndroidApplication;
 
 /**
  * This is a Dagger module. We use this to bind our Application class as a Context in the AppComponent
@@ -19,5 +20,5 @@ import dagger.Module;
 public abstract class ApplicationModule {
     //expose Application as an injectable context
     @Binds
-    abstract Context bindContext(Application application);
+    abstract Context bindContext(AndroidApplication application);
 }
