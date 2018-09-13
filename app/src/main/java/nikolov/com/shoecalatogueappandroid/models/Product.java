@@ -1,8 +1,9 @@
 package nikolov.com.shoecalatogueappandroid.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable{
     public int id;
     public String name, model, description, imagePath;
     public int price;

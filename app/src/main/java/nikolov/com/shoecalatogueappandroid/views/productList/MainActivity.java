@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import nikolov.com.shoecalatogueappandroid.R;
 import nikolov.com.shoecalatogueappandroid.models.Product;
 import nikolov.com.shoecalatogueappandroid.views.AddProductActivity;
+import nikolov.com.shoecalatogueappandroid.views.ProductDetails.ProductDetailsActivity;
 
 public class MainActivity extends AppCompatActivity implements ProductsListContract.Navigator{
 
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
 
         mProductListFragment.setNavigator(this);
         mProductListFragment.setPresenter(mProductListPresenter);
+
 
         FragmentTransaction transaction = getFragmentManager()
                 .beginTransaction()
@@ -85,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
 
     @Override
     public void navigateWith(Product product) {
-//        Intent intent = new Intent(this, ProductDetailsActivity.class);
-//        intent.putExtra(ProductDetailsActivity.EXTRA_KEY, product);
-//        startActivity(intent);
+        Intent intent = new Intent(this, ProductDetailsActivity.class);
+        intent.putExtra(ProductDetailsActivity.EXTRA_KEY, product);
+        startActivity(intent);
     }
 
 }
