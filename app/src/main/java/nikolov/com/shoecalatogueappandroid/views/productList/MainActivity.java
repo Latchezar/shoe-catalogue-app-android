@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
     @Inject
     ProductsListContract.Presenter mProductListPresenter;
 
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
         ButterKnife.bind(this);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
 
         mProductListFragment.setNavigator(this);

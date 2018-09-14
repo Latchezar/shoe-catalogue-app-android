@@ -11,7 +11,7 @@ import nikolov.com.shoecalatogueappandroid.views.productList.ProductsListContrac
 public abstract class ProductListModule {
     @FragmentScoped
     @ContributesAndroidInjector
-    abstract ProductListFragment produductListFragment();
+    abstract ProductListFragment productListFragment();
 
     @ActivityScoped
     @Binds
