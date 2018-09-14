@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,8 @@ import nikolov.com.shoecalatogueappandroid.services.base.ProductService;
  */
 public class ProductListFragment extends Fragment implements ProductsListContract.View, AdapterView.OnItemClickListener{
     private ProductsListContract.Navigator mNavigator;
+
+    private ProductsListContract.Presenter mPresenter;
 
     @BindView(R.id.product_list)
     ListView mProductListView;
@@ -68,6 +71,10 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
         return view;
     }
 
+    public static ProductListFragment newInstance() {
+        return new ProductListFragment();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -75,37 +82,56 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
 
     @Override
     public void setPresenter(ProductsListContract.Presenter presenter) {
-
+        mPresenter = presenter;
     }
 
     @Override
     public void showProducts(List<Product> products) {
+        runOnUi(() -> {
+            mProductListAdapter.clear();
+            mProductListAdapter.addAll(products);
+        });
+    }
 
+    private void runOnUi(Runnable action) {
+        getActivity().runOnUiThread(action);
     }
 
     @Override
     public void showEmptyProductsList() {
-
+        runOnUi(() ->
+                Toast.makeText(getContext(), "No Products!", Toast.LENGTH_SHORT).show()
+        );
     }
 
     @Override
     public void showError(Throwable e) {
-
+        runOnUi(() ->
+                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+        );
     }
 
     @Override
     public void showLoading() {
-
+        runOnUi(() -> {
+            mProductListView.setVisibility(View.GONE);
+            mLoadingView.setVisibility(View.VISIBLE);
+        });
     }
 
     @Override
     public void hideLoading() {
-
+        runOnUi(() -> {
+            mLoadingView.setVisibility(View.GONE);
+            mProductListView.setVisibility(View.VISIBLE);
+        });
     }
 
     @Override
     public void showProductDetails(Product product) {
-
+        runOnUi(() ->
+            mNavigator.navigateWith(product)
+        );
     }
 
     void setNavigator(ProductsListContract.Navigator navigator){

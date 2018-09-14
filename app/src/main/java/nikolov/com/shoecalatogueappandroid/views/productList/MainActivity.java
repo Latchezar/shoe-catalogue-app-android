@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements ProductsListContr
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        if  (mProductListFragment == null) {
+            mProductListFragment = ProductListFragment.newInstance();
+        }
+
 
         mProductListFragment.setNavigator(this);
         mProductListFragment.setPresenter(mProductListPresenter);

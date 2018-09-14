@@ -15,5 +15,5 @@ public abstract class ProductListModule {
 
     @ActivityScoped
     @Binds
-    abstract ProductsListContract.Presenter taskPresenter(ProductListPresenter presenter);
+    abstract ProductsListContract.Presenter productListPresenter(ProductListPresenter presenter);
 }
