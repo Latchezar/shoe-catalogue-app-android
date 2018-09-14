@@ -47,7 +47,7 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
     EditText mFilterEditText;
 
     @Inject
-    ProductListAdapter mProductListAdapter;
+    ArrayAdapter<Product> mProductListAdapter;
 
     @Inject
     public ProductListFragment() {
@@ -66,10 +66,6 @@ public class ProductListFragment extends Fragment implements ProductsListContrac
         mProductListView.setAdapter(mProductListAdapter);
 
         return view;
-    }
-
-    public static Fragment newInstance() {
-        return new ProductListFragment();
     }
 
     @Override
